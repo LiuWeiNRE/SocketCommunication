@@ -13,7 +13,7 @@ public class SocketServer : MonoBehaviour
     public int port = 1234;
     public AddressFamily addressFamily = AddressFamily.InterNetwork;
     public SocketType socketType = SocketType.Stream;
-    public ProtocolType protocolType = ProtocolType.Udp;
+    public ProtocolType protocolType = ProtocolType.Tcp;
 
     private byte[] data = new byte[1024];
     private Socket serverSocket;//服务器Socket
@@ -119,7 +119,7 @@ public class SocketServer : MonoBehaviour
                 }
 
                 string str = Encoding.UTF8.GetString(data, 0, data.Length);
-
+                Debug.Log(str);
                 AllSendMs(str);
             }
             catch (System.Exception ex)
@@ -141,6 +141,31 @@ public class SocketServer : MonoBehaviour
         {
             //data = obj.SerializeToByteArray();
             clientSocketList[i].Send(data, data.Length, 0);
+        }
+    }
+
+    public  string GetLocalIP()
+    {
+        try
+        {
+            string HostName = Dns.GetHostName(); //得到主机名
+            IPHostEntry IpEntry = Dns.GetHostEntry(HostName);
+            for (int i = 0; i < IpEntry.AddressList.Length; i++)
+            {
+                //从IP地址列表中筛选出IPv4类型的IP地址
+                //AddressFamily.InterNetwork表示此IP为IPv4,
+                //AddressFamily.InterNetworkV6表示此地址为IPv6类型
+                if (IpEntry.AddressList[i].AddressFamily == addressFamily)
+                {
+                    return IpEntry.AddressList[i].ToString();
+                }
+            }
+            return "";
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("获取本机IP出错:" + ex.Message);
+            return "";
         }
     }
     #endregion

@@ -3,6 +3,10 @@ SocketServer/.vs
 SocketServer/Library
 SocketServer/UnityPackageManager
 SocketServer/Temp
+SocketClient/.vs
+SocketClient/Library
+SocketClient/UnityPackageManager
+SocketClient/Temp
 #忽略文件
 *.csproj
 *.sln

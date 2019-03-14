@@ -76,16 +76,16 @@ public class RecivePhoto : MonoBehaviour
 
             //Debug.Log(size);
 
-            //byte[] buffer = new byte[2000000];
-            //socket.Receive(buffer, buffer.Length, SocketFlags.None);
+            byte[] buffer = new byte[2000000];
+            socket.Receive(buffer, buffer.Length, SocketFlags.None);
 
-            //byte[] bufferSize = new byte[4];
-            //socket.Receive(bufferSize, 0, 4, SocketFlags.None);
-            //int size = BitConverter.ToInt32(bufferSize, 0);
-            //Debug.Log(size);
+            byte[] bufferSize = new byte[4];
+            socket.Receive(bufferSize, 0, 4, SocketFlags.None);
+            int size = BitConverter.ToInt32(bufferSize, 0);
+            Debug.Log(size);
 
-            //m_queue.Enqueue(buffer);
-            Data = SocketHelper.ReceiveVarData(socket);
+            m_queue.Enqueue(buffer);
+            //Data = SocketHelper.ReceiveVarData(socket);
             isRunningThread = false;
             //socket.Close();
             

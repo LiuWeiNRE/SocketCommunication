@@ -16,8 +16,8 @@ public static class SocketHelper
         int total = 0;  //已接收的字节数
         int recv;
         //接收4个字节，得到“消息长度”
-        byte[] datasize = new byte[1024];
-        recv = s.Receive(datasize, 0, 1024, 0);
+        byte[] datasize = new byte[4];
+        recv = s.Receive(datasize, 0, 4, 0);
         int size = BitConverter.ToInt32(datasize, 0);
         //按消息长度接收数据
         int dataleft = size;

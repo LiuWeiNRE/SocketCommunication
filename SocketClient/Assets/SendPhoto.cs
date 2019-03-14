@@ -20,8 +20,8 @@ public class SendPhoto : MonoBehaviour
 
     public void SendMegEvent()
     {
-        //SendPhotoMessage(Application.streamingAssetsPath + "/11.jpg");
-        StartCoroutine(GetScoreImage(new Rect(0, 0, 1920, 1080)));
+        SendPhotoMessage(Application.streamingAssetsPath + "/11.jpg");
+        //StartCoroutine(GetScoreImage(new Rect(0, 0, 1920, 1080)));
     }
 
     void SendPhotoMessage(string fileName)
